@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Contact from './Contact'
+import Contact from "./Contact";
 
 class Contacts extends Component {
   constructor() {
@@ -30,16 +30,13 @@ class Contacts extends Component {
 
   render() {
     const { contacts } = this.state;
-    console.log(contacts)
+    console.log(contacts);
     return (
-      <div>
+      <React.Fragment>
         {contacts.map(contact => (
-          <Contact
-            id={contact.id}
-            contact={contact}
-          />  
-          ))}
-      </div>
+          <Contact id={contact.id} contact={contact} />
+        ))}
+      </React.Fragment>
     );
   }
 }

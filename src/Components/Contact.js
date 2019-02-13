@@ -5,6 +5,10 @@ import PropTypes from "prop-types";
 class Contact extends Component {
   constructor() {
     super();
+    this.state = {
+      pago: false,
+      showContactInfo: false
+    };
   }
 
   // static propTypes = {
@@ -13,24 +17,50 @@ class Contact extends Component {
   //   phone: PropTypes.string.isRequired
   // };
 
+  onShowClick = e => {
+    this.setState({
+      ...this.state,
+      showContactInfo: !this.state.showContactInfo
+    });
+
+    console.log(this.state);
+  };
+
+  onDeleteClick = e => {
+    this.props.onDeleteClickHandler();
+  };
+
   render() {
-    const { contact } = this.props.contact;
+    const { name, email, phone } = this.props.contact;
+    const { showContactInfo } = this.state.showContactInfo;
     return (
-      <div className="card card-body mb-3" >
-        <h4>{this.props.contact.name}</h4>
-        <ul className="list-group">
-          <li className="list-group-item">{this.props.contact.email}</li>
-          <li className="list-group-item">{this.props.contact.phone}</li>
-        </ul>
+      <div className="card card-body mb-3">
+        <h4>
+          {name}{" "}
+          <i
+            onClick={e => this.onShowClick(e)}
+            className="fas fa-sort-down"
+            style={{ cursor: "pointer" }}
+          />
+          <i
+            onClick={e => this.onDeleteClick()}
+            className="fas fa-times"
+            style={{ cursor: "pointer", float: "right", color: "red" }}
+          />
+        </h4>
+        {this.state.showContactInfo ? (
+          <ul className="list-group">
+            <li className="list-group-item">{email}</li>
+            <li className="list-group-item">{phone}</li>
+          </ul>
+        ) : null}
       </div>
     );
   }
 }
 
-// Contact.propTypes = {
-//   name: PropTypes.string.isRequired,
-//   email: PropTypes.string.isRequired,
-//   phone: PropTypes.string.isRequired
-// };
+Contact.propTypes = {
+  contact: PropTypes.object.isRequired
+};
 
 export default Contact;
