@@ -28,13 +28,29 @@ class Contacts extends Component {
     };
   }
 
+deleteContact = (id) => {
+  const {contacts} = this.state;
+  console.log('sdsdsd');
+  const newContacts = contacts.filter(contact => 
+    contact.id !== id);
+  
+  this.setState({
+    contacts: newContacts
+
+  })  
+}
+
+
+
   render() {
     const { contacts } = this.state;
-    console.log(contacts);
+   
     return (
       <React.Fragment>
         {contacts.map(contact => (
-          <Contact id={contact.id} contact={contact} />
+           <Contact id={contact.id} contact={contact} 
+           deleteClickHandler={() => this.deleteContact(contact.id)}
+          />
         ))}
       </React.Fragment>
     );
