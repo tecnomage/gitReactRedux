@@ -14,13 +14,13 @@ class Contact extends Component {
   // };
 
   render() {
-    const { name, email, phone } = this.props;
+    const { contact } = this.props.contact;
     return (
       <div className="card card-body mb-3" >
-        <h4>{name}</h4>
+        <h4>{this.props.contact.name}</h4>
         <ul className="list-group">
-          <li className="list-group-item">{email}</li>
-          <li className="list-group-item">{phone}</li>
+          <li className="list-group-item">{this.props.contact.email}</li>
+          <li className="list-group-item">{this.props.contact.phone}</li>
         </ul>
       </div>
     );
