@@ -26,7 +26,7 @@ class Contact extends Component {
   };
 
   onDeleteClick = () => {
-    console.log(1233)
+    console.log(1222226)
 
   };
 
