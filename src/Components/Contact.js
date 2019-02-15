@@ -25,9 +25,13 @@ class Contact extends Component {
     });
   };
 
-  onDeleteClick = () => {
-    console.log(1222226)
-
+  onDeleteClick = (dispatch,id) => {
+    console.log(dispatch)
+    dispatch({
+      type: 'DELETE_CONTACT',
+      payload:id
+    })
+    console.log(id)
   };
 
   render() {
@@ -48,7 +52,7 @@ class Contact extends Component {
                   style={{ cursor: "pointer" }}
                 />
                 <i
-                  onClick={ () => this.onDeleteClick(id,dispatch)}
+                  onClick={ () => this.onDeleteClick(dispatch,id)}
                   className="fas fa-times"
                   style={{ cursor: "pointer", float: "right", color: "red" }}
                 />
