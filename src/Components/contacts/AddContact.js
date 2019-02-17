@@ -7,43 +7,63 @@ class AddContact extends Component {
     phone: ""
   };
 
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  onSubmit = e => {
+    e.preventDefault();
+    console.log(this.state)
+  };
+
   render() {
+    const { name, email, phone } = this.state;
+
     return (
-      
-      <div className="card mb-3">
+      <div>
         <div className="card-header">Add Contact</div>
         <div className="card-body">
-        <form>
+          <form onSubmit={this.onSubmit}>
             <div className="form-group">
-            <label htmlFor="name">Name</label>
-            <input 
-            type="text" 
-            className="form-control form-control-lg"
-            placeholder="Enter name"/>
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                name="name"
+                className="form-control form-control-lg"
+                placeholder="Enter name"
+                value={name}
+                onChange={this.onChange}
+              />
             </div>
             <div className="form-group">
-            <label htmlFor="email">E-Mail</label>
-            <input 
-            type="email" 
-            className="form-control form-control-lg"
-            placeholder="Enter email..."
-            />
+              <label htmlFor="email">E-Mail</label>
+              <input
+                type="email"
+                name="email"
+                className="form-control form-control-lg"
+                placeholder="Enter email..."
+                value={email}
+                onChange={this.onChange}
+              />
             </div>
-            
+
             <div className="form-group">
-            <label htmlFor="phone">Phone</label>
-            <input 
-            type="number" 
-            className="form-control form-control-lg"
-            placeholder="Enter telefone"
-            />
+              <label htmlFor="phone">Phone</label>
+              <input
+                type="number"
+                className="form-control form-control-lg"
+                placeholder="Enter telefone"
+                onChange={this.onChange}
+              />
+              <input
+                type="submit"
+                value="Add Contact"
+                className="btn btn-light btn-block"
+              />
             </div>
-            
-            </form>
-            </div>
-            </div>
-        
-     
+          </form>
+        </div>
+      </div>
     );
   }
 }
