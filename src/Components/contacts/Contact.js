@@ -36,13 +36,14 @@ class Contact extends Component {
   render() {
     const { id, name, email, phone } = this.props.contact;
     const { showContactInfo } = this.state.showContactInfo;
-
+    
     return (
       <Consumer>
         {value => {
           const {dispatch}= value;
-          return (
-            <div className="card card-body mb-3">
+            return (
+              <div className="card card-body mb-3">
+             {/*  <div key={id}/> -->*/}
               <h4>
                 {name}{" "}
                 <i
