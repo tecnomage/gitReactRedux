@@ -15,7 +15,7 @@ class AddContact extends Component {
 
   onSubmit = (dispatch,e) => {
      e.preventDefault();
-    
+      console.log('entrou');
      const {name,email,phone} = this.state;
      const newContact = {
        id:uuid(),
@@ -48,7 +48,7 @@ class AddContact extends Component {
             <div>
               <div className="card-header">Add Contact</div>
               <div className="card-body">
-                <form onSubmit={() => this.onSubmit(dispatch)}>
+                <form onSubmit={(e) => this.onSubmit(dispatch,e)}>
                   <div className="form-group">
                     <label htmlFor="name">Name</label>
                     <input
