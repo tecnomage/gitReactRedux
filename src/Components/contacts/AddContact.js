@@ -28,6 +28,15 @@ class AddContact extends Component {
       type: "ADD_CONTACT",
       payload: newContact
     })
+  
+    this.setState({
+      name: 'nome',
+      email: '',
+      phone: ''
+    })
+    
+    console.log(this.state)
+  
   };
 
   // static defaultProps = {

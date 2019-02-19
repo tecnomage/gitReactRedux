@@ -17,7 +17,7 @@ class Contacts extends Component {
             <React.Fragment>
               {contacts.map(contact => 
                (
-                 <Contact id={contact.id} contact={contact} />
+                 <Contact key={contact.id} contact={contact} />
                )
               //console.log(contact)
               )}

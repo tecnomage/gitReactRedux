@@ -46,7 +46,7 @@ class Contact extends Component {
              {/*  <div key={id}/> -->*/}
               <h4>
                 {name}{" "}
-                <i
+                <i key={id}
                   onClick={e => this.onShowClick(e)}
                   className="fas fa-sort-down"
                   style={{ cursor: "pointer" }}
