@@ -46,16 +46,16 @@ class AddContact extends Component {
   // }
 
   render() {
-    const { name, email, phone } = this.props;
+    const { name, email, phone } = this.state;
 
     return (
       <Consumer>
         {value => {
           const { dispatch } = value;
-          console.log('o fato ' + dispatch);
+          
           return (
             <div>
-              <div className="card-header">Add Contact</div>
+              <div className="card-header">Add Consact</div>
               <div className="card-body">
                 <form onSubmit={ (e) => this.onSubmit(dispatch,e)}>
                   <div className="form-group">
