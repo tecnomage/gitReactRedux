@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Consumer } from "../../context";
 import uuid from 'uuid'
+import TextInputGroup from '../../layout/TextInputGroup'
 
 class AddContact extends Component {
   state = {
@@ -58,29 +59,15 @@ class AddContact extends Component {
               <div className="card-header">Add Consact</div>
               <div className="card-body">
                 <form onSubmit={ (e) => this.onSubmit(dispatch,e)}>
-                  <div className="form-group">
-                    <label htmlFor="name">Name</label>
-                    <input
-                      type="text"
-                      name="name"
-                      className="form-control form-control-lg"
-                      placeholder="Enter name"
-                      value={name}
-                      onChange={this.onChange}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="email">E-Mail</label>
-                    <input
-                      type="email"
-                      name="email"
-                      className="form-control form-control-lg"
-                      placeholder="Enter email..."
-                      value={email}
-                      onChange={this.onChange}
-                    />
-                  </div>
-
+                  <TextInputGroup type='text' name="name" label="Name"
+                  placeholder='entre seu nome aqui'  value={name}
+                  onChange={this.onChange}
+                  />
+                  <TextInputGroup type='email' name="email" label="Email"
+                  placeholder='entre seu email'  value={email}
+                  onChange={this.onChange}
+                  />
+              
                   <div className="form-group">
                     <label htmlFor="phone">Phone</label>
                     <input
