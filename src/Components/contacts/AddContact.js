@@ -30,7 +30,7 @@ class AddContact extends Component {
     })
   
     this.setState({
-      name: 'nome',
+      name: '',
       email: '',
       phone: ''
     })

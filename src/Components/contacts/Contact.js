@@ -6,8 +6,7 @@ class Contact extends Component {
   constructor() {
     super();
     this.state = {
-      pago: false,
-      showContactInfo: false
+       showContactInfo: false
     };
   }
 
