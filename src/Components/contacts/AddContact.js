@@ -12,6 +12,7 @@ class AddContact extends Component {
   };
 
   onChange = e => {
+    console.log(e.target)
     this.setState({ [e.target.name]: e.target.value });
   };
 
@@ -19,8 +20,9 @@ class AddContact extends Component {
   //phone: 'phone is required'
   onSubmit = (dispatch,e) => {
      e.preventDefault();
-      console.log(dispatch);
-     const {name,email,phone} = this.state;
+      //console.log(dispatch);
+      console.log(e.target.name)
+     const {name,email,phone,errors} = this.state;
     
     //validations
     if(name===''){
