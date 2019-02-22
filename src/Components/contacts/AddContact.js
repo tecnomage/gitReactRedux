@@ -7,17 +7,35 @@ class AddContact extends Component {
   state = {
     name: "",
     email: "",
-    phone: ""
+    phone: "",
+    errors: {}
   };
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  //name: 'name is required', email: 'email is required',
+  //phone: 'phone is required'
   onSubmit = (dispatch,e) => {
      e.preventDefault();
       console.log(dispatch);
      const {name,email,phone} = this.state;
+    
+    //validations
+    if(name===''){
+      this.setState({errors:'name is required'})
+    }
+
+    if(email===''){
+      this.setState({errors:'email is required'})
+    }
+
+    
+    if(phone===''){
+      this.setState({errors:'email is required'})
+    }
+    
      const newContact = {
        id:uuid(),
        name,
@@ -33,7 +51,8 @@ class AddContact extends Component {
     this.setState({
       name: '',
       email: '',
-      phone: ''
+      phone: '',
+      error: {}
     })
     
     console.log(this.state)
@@ -47,7 +66,7 @@ class AddContact extends Component {
   // }
 
   render() {
-    const { name, email, phone } = this.state;
+    const { name, email, phone, errors } = this.state;
 
     return (
       <Consumer>
@@ -62,10 +81,12 @@ class AddContact extends Component {
                   <TextInputGroup type='text' name="name" label="Name"
                   placeholder='entre seu nome aqui'  value={name}
                   onChange={this.onChange}
+                  errors={errors.name}
                   />
                   <TextInputGroup type='email' name="email" label="Email"
                   placeholder='entre seu email'  value={email}
                   onChange={this.onChange}
+                  errors={errors.email}
                   />
               
                   <div className="form-group">
@@ -76,6 +97,7 @@ class AddContact extends Component {
                       placeholder="Enter telefone"
                       value={phone}
                       onChange={this.onChange}
+                      errors={errors.phone}
                     />
                     <input
                       type="submit"
