@@ -24,23 +24,28 @@ class AddContact extends Component {
     
     //validations
     if(name===''){
-      this.setState({errors:'name is required'})
+      this.setState( {errors: {name:'name is required'}})
+      return
     }
 
     if(email===''){
-      this.setState({errors:'email is required'})
+      this.setState( {errors: {email:'email is required'}})
+         return
     }
 
     
     if(phone===''){
       this.setState({errors:'email is required'})
+      return
     }
     
      const newContact = {
        id:uuid(),
        name,
        email,
-       phone
+       phone,
+       errors: {}
+
      }
 
     dispatch({
@@ -75,18 +80,18 @@ class AddContact extends Component {
           
           return (
             <div>
-              <div className="card-header">Add Consact</div>
+              <div className="card-header">Add Contact</div>
               <div className="card-body">
                 <form onSubmit={ (e) => this.onSubmit(dispatch,e)}>
-                  <TextInputGroup type='text' name="name" label="Name"
+                  <TextInputGroup  name="name" label="Name"
                   placeholder='entre seu nome aqui'  value={name}
                   onChange={this.onChange}
-                  errors={errors.name}
+                  error={errors.name}
                   />
                   <TextInputGroup type='email' name="email" label="Email"
                   placeholder='entre seu email'  value={email}
                   onChange={this.onChange}
-                  errors={errors.email}
+                  error={errors.email}
                   />
               
                   <div className="form-group">
@@ -97,7 +102,7 @@ class AddContact extends Component {
                       placeholder="Enter telefone"
                       value={phone}
                       onChange={this.onChange}
-                      errors={errors.phone}
+                      error={errors.phone}
                     />
                     <input
                       type="submit"
