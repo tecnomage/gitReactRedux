@@ -17,7 +17,7 @@ class App extends Component {
             <Header branding="Contact Manager" />
             <div className="container">
               <Switch>
-                <Route exact path="/about" component={About} />
+                <Route exact path="/about/:id" component={About} />
 
                 <Route exact path="/contact/add" component={AddContact} />
 

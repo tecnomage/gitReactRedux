@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
 
-export default function About() {
+export default (props)=> {
   return (
     <div>
-      <h1 className="display-4">About Contact Manager</h1>
+      {/*/ <h1 className="display-4">About Contact Manager</h1>**/}
+      <h1 className="display-4">{props.match.params.id}</h1>
       <p className="lead">Simple app to manage contacts</p>
       <div className="text-secondary">Version 1</div>
     </div>
-  )
+  );
 }
