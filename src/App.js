@@ -7,6 +7,7 @@ import Contacts from "./Components/contacts/Contacts";
 import AddContact from "./Components/contacts/AddContact";
 import Header from "./layout/Header";
 import About from "./pages/about";
+import NotFound from "./pages/NotFound";
 
 class App extends Component {
   render() {
@@ -18,10 +19,9 @@ class App extends Component {
             <div className="container">
               <Switch>
                 <Route exact path="/about/:id" component={About} />
-
                 <Route exact path="/contact/add" component={AddContact} />
-
                 <Route exact path="/" component={Contacts} />
+                <Route component={NotFound} />
               </Switch>
             </div>
           </div>
