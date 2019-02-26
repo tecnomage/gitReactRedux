@@ -23,7 +23,7 @@ class Contacts extends Component {
                 contact => (
                   <Contact key={contact.id} contact={contact} />
                 )
-                //console.log(contact)
+                
               )}
             </React.Fragment>
           );
