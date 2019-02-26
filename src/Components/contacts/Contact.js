@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Consumer } from "../../context";
+import Axios from "axios";
 
 class Contact extends Component {
   constructor() {
     super();
     this.state = {
-       showContactInfo: false
+      showContactInfo: false
     };
   }
 
@@ -23,35 +24,42 @@ class Contact extends Component {
     });
   };
 
-  onDeleteClick = (dispatch,id) => {
-    console.log(dispatch)
-    dispatch({
-      type: 'DELETE_CONTACT',
-      payload:id
-    })
-    console.log(id)
+  onDeleteClick = (dispatch, id) => {
+   
+
+    Axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`)
+        .then(res => {
+          dispatch({
+            type: "DELETE_CONTACT",
+            payload: id
+          });
+        });
+
+    
+    console.log(id);
   };
 
   render() {
     const { id, name, email, phone } = this.props.contact;
     const { showContactInfo } = this.state.showContactInfo;
-    
+
     return (
       <Consumer>
         {value => {
-          const {dispatch}= value;
-            return (
-              <div className="card card-body mb-3">
-             {/*  <div key={id}/> -->*/}
+          const { dispatch } = value;
+          return (
+            <div className="card card-body mb-3">
+              {/*  <div key={id}/> -->*/}
               <h4>
                 {name}{" "}
-                <i key={id}
+                <i
+                  key={id}
                   onClick={e => this.onShowClick(e)}
                   className="fas fa-sort-down"
                   style={{ cursor: "pointer" }}
                 />
                 <i
-                  onClick={ () => this.onDeleteClick(dispatch,id)}
+                  onClick={() => this.onDeleteClick(dispatch, id)}
                   className="fas fa-times"
                   style={{ cursor: "pointer", float: "right", color: "red" }}
                 />
