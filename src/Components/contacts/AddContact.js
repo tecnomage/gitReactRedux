@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Consumer } from "../../context";
 //import uuid from "uuid";
 import TextInputGroup from "../../layout/TextInputGroup";
-import Axios from "axios";
+import axios from "axios";
 
 class AddContact extends Component {
   state = {
@@ -12,14 +12,17 @@ class AddContact extends Component {
     errors: {}
   };
 
+  
+
+
   onChange = e => {
-    console.log(e.target);
+    //console.log(e.target);
     this.setState({ [e.target.name]: e.target.value });
   };
 
   //name: 'name is required', email: 'email is required',
   //phone: 'phone is required'
-  onSubmit = (dispatch, e) => {
+  onSubmit =  async (dispatch, e) => {
     e.preventDefault();
     console.log(e.target.name);
     const { name, email, phone, errors } = this.state;
@@ -47,13 +50,12 @@ class AddContact extends Component {
       errors: {}
     };
 
-    Axios.post("https://jsonplaceholder.typicode.com/users", newContact).then(
-      res =>
-        dispatch({
-          type: "ADD_CONTACT",
-          payload: res.data
-        })
-    );
+    const res = await axios.post("https://jsonplaceholder.typicode.com/users", newContact);
+
+    dispatch({
+      type: "ADD_CONTACT",
+      payload: res.data
+    })
 
     this.setState({
       name: "",
