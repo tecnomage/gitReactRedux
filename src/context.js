@@ -6,6 +6,7 @@ const Context = React.createContext();
 const reducer = (state, action) => {
   switch (action.type) {
     case "DELETE_CONTACT":
+    console.log("delete in")
       return {
         ...state,
         contacts: state.contacts.filter(

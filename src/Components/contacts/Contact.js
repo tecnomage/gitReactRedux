@@ -27,17 +27,15 @@ class Contact extends Component {
 
   onDeleteClick = async (dispatch, id) => {
     try {
-      const res = await axios.delete(
-        `https://jsonplaceholder.typicode.com/users/${id}`
-      );
-    } catch (e) {
-      dispatch({
-        type: "DELETE_CONTACT",
-        payload: id
-      });
-    }
+      console.log("entrou");
 
-    console.log(id);
+      await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
+    } catch (e) {}
+
+    dispatch({
+      type: "DELETE_CONTACT",
+      payload: id
+    });
   };
 
   render() {
@@ -65,10 +63,10 @@ class Contact extends Component {
                   style={{ cursor: "pointer", float: "right", color: "red" }}
                 />
                 <Link to={`contact/edit/${id}`}>
-                <i 
-                  className="fas pencil-alt"
-                  style={{cursor : "pointer"  }}
-                />
+                  <i
+                    className="fas fa-pencil-alt"
+                    style={{ cursor: "pointer" }}
+                  />
                 </Link>
               </h4>
               {this.state.showContactInfo ? (
