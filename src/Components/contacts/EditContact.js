@@ -42,20 +42,7 @@ class EditContact extends Component {
       this.setState({ errors: "email is required" });
       return;
     }
-
-    const newContact = {
-      name,
-      email,
-      phone,
-      errors: {}
-    };
-
-    const res = await axios.get(`https://jsonplaceholder.typicode.com/users{:id}`, newContact);
-
-    dispatch({
-      type: "ADD_CONTACT",
-      payload: res.data
-    })
+  
 
     this.setState({
       name: "",
@@ -85,7 +72,7 @@ class EditContact extends Component {
 
           return (
             <div>
-              <div className="card-header">Add Contact</div>
+              <div className="card-header">Edit Contact</div>
               <div className="card-body">
                 <form onSubmit={e => this.onSubmit(dispatch, e)}>
                   <div className="form-group">
@@ -119,7 +106,7 @@ class EditContact extends Component {
                     />
                     <input
                       type="submit"
-                      value="Add Contact"
+                      value="Update Contact"
                       className="btn btn-light btn-block"
                     />
                   </div>
