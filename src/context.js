@@ -6,24 +6,32 @@ const Context = React.createContext();
 const reducer = (state, action) => {
   switch (action.type) {
     case "DELETE_CONTACT":
-    console.log("delete in")
+      console.log("delete in");
       return {
         ...state,
         contacts: state.contacts.filter(
           contact => contact.id !== action.payload
         )
       };
-      case "ADD_CONTACT":
+    case "UPDATE_CONTACT":
       return {
         ...state,
-        contacts: [action.payload,
-                ...state.contacts]
-        
+        contacts: state.contacts.map(contact =>
+          contact.id === action.payload.id
+            ? (contact = action.payload)
+            : contact
+        )
       };
-            
+
+    case "ADD_CONTACT":
+      return {
+        ...state,
+        contacts: [action.payload, ...state.contacts]
+      };
+
     default:
       return state;
-    }; 
+  }
 };
 export class Provider extends Component {
   state = {
@@ -47,19 +55,17 @@ export class Provider extends Component {
         phone: "555555"
       }
     ],
-    dispatch: (action) => {
-        this.setState(state => reducer(state,action))
+    dispatch: action => {
+      this.setState(state => reducer(state, action));
     }
   };
 
-  async componentDidMount(){
-    const res = await
-    axios.get('https://jsonplaceholder.typicode.com/users')
-    
+  async componentDidMount() {
+    const res = await axios.get("https://jsonplaceholder.typicode.com/users");
 
-    this.setState({contacts: res.data})
+    this.setState({ contacts: res.data });
   }
-    
+
   render() {
     return (
       <Context.Provider value={this.state}>

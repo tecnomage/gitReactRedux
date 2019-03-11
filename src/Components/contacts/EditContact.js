@@ -12,22 +12,22 @@ class EditContact extends Component {
     errors: {}
   };
 
-  async componentDidMount(){
+  async componentDidMount() {
     //usado para pegar algo do endereço
-    const {id} = this.props.match.params;
-    const res = await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`);
+    const { id } = this.props.match.params;
+    const res = await axios.get(
+      `https://jsonplaceholder.typicode.com/users/${id}`
+    );
 
     const contact = res.data;
-    console.log(contact)
+    console.log(contact);
 
     this.setState({
-        name: contact.name,
-        email: contact.email,
-        phone: contact.phone
-    })
-
+      name: contact.name,
+      email: contact.email,
+      phone: contact.phone
+    });
   }
-
 
   onChange = e => {
     //console.log(e.target);
@@ -36,7 +36,7 @@ class EditContact extends Component {
 
   //name: 'name is required', email: 'email is required',
   //phone: 'phone is required'
-  onSubmit =  async (dispatch, e) => {
+  onSubmit = async (dispatch, e) => {
     e.preventDefault();
     console.log(e.target.name);
     const { name, email, phone, errors } = this.state;
@@ -56,17 +56,30 @@ class EditContact extends Component {
       this.setState({ errors: "email is required" });
       return;
     }
-  
 
+   
+    const updContact = { 
+      name,
+      email,
+      phone
+    }
+
+    const {id} = this.props.match.params
+    console.log(id);
+
+    const res = await axios.put(`https://jsonplaceholder.typicode.com/users/${id}`,
+    updContact)
+
+    dispatch({type:'UPDATE_CONTACT',
+              payload: res.data})
+    //clear state
     this.setState({
       name: "",
       email: "",
       phone: "",
       error: {}
     });
-
     this.props.history.push("/");
-
     console.log(this.state);
   };
 
@@ -78,7 +91,7 @@ class EditContact extends Component {
 
   render() {
     const { name, email, phone, errors } = this.state;
-
+    console.log(phone);
     return (
       <Consumer>
         {value => {
