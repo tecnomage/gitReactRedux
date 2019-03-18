@@ -1,6 +1,0 @@
--css
-npm install bootstrap
-
-
-Component
-criar uma classe rcc + tab

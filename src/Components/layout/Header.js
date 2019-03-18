@@ -1,15 +1,6 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-
-// function Header(){
-//     return (
-//         <div>
-//             <h1>Contact Manager</h1>
-//         </div>
-
-//     );
-// }
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const Header = props => {
   const { branding } = props;
@@ -23,17 +14,17 @@ const Header = props => {
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
               <Link to="/" className="nav-link">
-                <i className="fas fas-plus">HOME</i> 
+                <i className="fas fa-home" /> Home
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/contact/add" className="nav-link">
-                <i className="fas fa-plus">ADD CONTACT</i> 
+                <i className="fas fa-plus" /> Add
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/about" className="nav-link">
-               <i className="fa fa-question">ABOUT</i> 
+                <i className="fas fa-question" /> About
               </Link>
             </li>
           </ul>
@@ -44,12 +35,11 @@ const Header = props => {
 };
 
 Header.defaultProps = {
-  branding: PropTypes.string.isRequired
+  branding: 'My App'
 };
 
-// const headingStyle = {
-//     color: 'green',
-//     fontSize: '40px'
-// }
+Header.propTypes = {
+  branding: PropTypes.string.isRequired
+};
 
 export default Header;
