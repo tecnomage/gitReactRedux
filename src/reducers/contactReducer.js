@@ -36,6 +36,7 @@ export default function(state = initialState, action) {
             contact.id !== action.payload)
       };
     case ADD_CONTACT:
+    console.log('add')
       return {
         ...state,
         contacts: [action.payload, ...state.contacts]
