@@ -4,9 +4,7 @@ import rootReducer from './reducers'
 
 
 
-const initialState = {
-    test: 'vini'
-};
+const initialState = {};
 
 const middleWare = [thunk];
 
