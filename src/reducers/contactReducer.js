@@ -31,7 +31,8 @@ export default function(state = initialState, action) {
         )
       };
     case UPDATE_CONTACT:
-      return {
+     
+       return {
         ...state,
         contacts: state.contacts.map(contact =>
           contact.id === action.payload.id
